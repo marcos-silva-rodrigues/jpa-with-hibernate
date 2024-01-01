@@ -31,5 +31,6 @@ public class Main {
         celulares = em.merge(celulares);
         celulares.setName("PHONES");
         em.flush();
+        em.close();
     }
 }
