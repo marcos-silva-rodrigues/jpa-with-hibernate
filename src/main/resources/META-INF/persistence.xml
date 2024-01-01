@@ -17,11 +17,11 @@
             <property name="jakarta.persistence.jdbc.password" value="" />
 
             <!-- Automatically export the schema -->
-<!--            <property name="jakarta.persistence.schema-generation.database.action" value="create" />-->
+            <property name="jakarta.persistence.schema-generation.database.action" value="create" />
 
             <!-- Echo all executed SQL to console -->
-<!--            <property name="hibernate.show_sql" value="true" />-->
-<!--            <property name="hibernate.format_sql" value="true" />-->
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
 <!--            <property name="hibernate.highlight_sql" value="true" />-->
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
         </properties>
