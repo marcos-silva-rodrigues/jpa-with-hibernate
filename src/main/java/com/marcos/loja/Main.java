@@ -1,25 +1,35 @@
 package com.marcos.loja;
 
+import com.marcos.loja.dao.CategoriaDao;
+import com.marcos.loja.dao.ProdutoDao;
+import com.marcos.loja.modelo.Categoria;
 import com.marcos.loja.modelo.Produto;
+import com.marcos.loja.utils.JpaUtil;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 import java.math.BigDecimal;
 
 public class Main {
     public static void main(String[] args) {
-        Produto celular = new Produto();
-        celular.setNome("Xiaomi Redmi");
-        celular.setDescricao("Teste");
-        celular.setPreco(new BigDecimal("1200"));
+        Categoria celulares = new Categoria("CELULARES");
+        Produto celular = new Produto("Xiaomi Redmi", "Teste", new BigDecimal("1200"), celulares);
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("jpa");
-        EntityManager em = factory.createEntityManager();
+        EntityManager em = new JpaUtil().getEntityManager();
+        ProdutoDao produtoDao = new ProdutoDao(em);
+        CategoriaDao categoriaDao = new CategoriaDao(em);
 
         em.getTransaction().begin();
-        em.persist(celular);
-        em.getTransaction().commit();
-        em.close();
+
+        categoriaDao.create(celulares);
+        produtoDao.create(celular);
+
+        em.flush();
+        em.clear();
+
+        // retorna o modelo de DETACHED para MANAGED através de uma nova
+        // referência
+        celulares = em.merge(celulares);
+        celulares.setName("PHONES");
+        em.flush();
     }
 }
