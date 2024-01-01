@@ -7,7 +7,7 @@
         <description>
             Persistence unit for the Jakarta Persistence tutorial of the Hibernate Getting Started Guide
         </description>
-        <class>com.marcos</class>
+        <class>com.marcos.loja.modelo.Produto</class>
         
         <properties>
             <!-- Database connection settings -->
