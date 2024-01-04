@@ -29,7 +29,7 @@ public class Main {
         // retorna o modelo de DETACHED para MANAGED através de uma nova
         // referência
         celulares = em.merge(celulares);
-        celulares.setName("PHONES");
+        celulares.setNome("PHONES");
         em.flush();
         em.close();
     }
