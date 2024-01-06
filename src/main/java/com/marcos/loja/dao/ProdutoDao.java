@@ -93,15 +93,15 @@ public class ProdutoDao {
         Predicate filters = builder.and();
 
         if (nome != null && !nome.trim().isEmpty()) {
-            builder.and(filters, builder.equal(from.get("nome"), nome));
+            filters = builder.and(filters, builder.equal(from.get("nome"), nome));
         }
 
         if (preco != null) {
-            builder.and(filters, builder.equal(from.get("preco"), preco));
+            filters = builder.and(filters, builder.equal(from.get("preco"), preco));
         }
 
         if (dataCadastro != null ) {
-            builder.and(filters, builder.equal(from.get("dataCadastro"), dataCadastro));
+            filters = builder.and(filters, builder.equal(from.get("dataCadastro"), dataCadastro));
         }
 
         query.where(filters);
