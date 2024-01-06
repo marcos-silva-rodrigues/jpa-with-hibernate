@@ -36,6 +36,11 @@ public class CadastroDePedido {
 
         BigDecimal valorTotal = pedidoDao.valorTotalVendido();
         System.out.println("Valor total vendido: " + valorTotal);
+
+        var relatorioDeVendas = pedidoDao.relatorioDeVendas();
+        for (Venda venda: relatorioDeVendas) {
+            System.out.println(venda.toString());
+        }
         em.close();
 
     }
