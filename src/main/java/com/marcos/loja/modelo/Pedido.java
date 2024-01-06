@@ -1,6 +1,7 @@
 package com.marcos.loja.modelo;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -19,7 +20,7 @@ public class Pedido {
     private BigDecimal valorTotal = BigDecimal.ZERO;
     private LocalDate dataCadastro = LocalDate.now();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
 
     @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL)

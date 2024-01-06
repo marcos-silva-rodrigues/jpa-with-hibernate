@@ -32,7 +32,7 @@ public class Produto {
 //    @Enumerated(EnumType.STRING)
 //    private Categoria categoria;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Categoria categoria;
 
     public Produto() {
