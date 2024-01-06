@@ -5,6 +5,11 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+
+// Gera uma coluna DTYPE para identicar qual o registro esta sendo buscado
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+// Cria uma tabela para cada herança e sincroniza com o msm id da tabela base
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 @Table(name = "produtos")
 @NamedQuery(
