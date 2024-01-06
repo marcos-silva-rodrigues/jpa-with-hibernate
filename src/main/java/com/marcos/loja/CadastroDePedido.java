@@ -11,7 +11,7 @@ public class CadastroDePedido {
 
     public static void main(String[] args) {
 
-        var em = setUp();
+        var em = setupEm();
 
         cadastrarProduto(em);
 
@@ -26,25 +26,24 @@ public class CadastroDePedido {
 
 
         Produto produto = produtoDao.findById(1l);
-        ItemPedido item = new ItemPedido(1, pedido, produto);
+        ItemPedido item = new ItemPedido(2, pedido, produto);
 
         pedido.adicionarItem(item);
         pedidoDao.create(pedido);
 
 
-       setDown(em);
+        em.getTransaction().commit();
+
+        BigDecimal valorTotal = pedidoDao.valorTotalVendido();
+        System.out.println("Valor total vendido: " + valorTotal);
+        em.close();
 
     }
 
-    private static EntityManager setUp() {
+    private static EntityManager setupEm() {
         EntityManager em = new JpaUtil().getEntityManager();
         em.getTransaction().begin();
         return em;
-    }
-
-    private static void setDown(EntityManager em) {
-        em.getTransaction().commit();
-        em.close();
     }
 
     private static void cadastrarProduto(EntityManager em) {
